@@ -13,7 +13,7 @@
 <link>https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html</link>
 
 ```
-# JSON 예시
+# Log(JSON) 예시
 {
     "log":"492: logging update\n",
     "stream":"stdout",
@@ -67,6 +67,6 @@ CloudWatch Event에서 보내는 data값을 바이트코드로 변환하는 작�
 2. Fluentd yaml 수정(stage/k8s/fluentd.yaml) - AWS github CloudWatch Agent(fluentd) 사용  
 3. 로그 생성 Pod yaml 작성(stage/k8s/apply.yaml) - busybox image 사용  
 4. Lambda Function 작성(stage/lambda/slack.py) - Bludprint(cloudwatch-alarm-to-slack-python)기반 코드 커스텀  
-5. CloudWatch의 Log Group의 해당 로그 확인 및 Lambda 구독필터 설정 - 패턴필터링 설정( ```{ $.log = "*error*"}``` )  
+5. CloudWatch의 Log Group의 해당 로그 확인 및 Lambda 구독필터 설정 - 패턴필터링 설정( ```{ $.log = "*error*" }``` )  
 6. 1,2의 결과물 EKS Cluster에 Deploy  
 7. Slack Alert 확인
