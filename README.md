@@ -70,3 +70,19 @@ CloudWatch Event에서 보내는 data값을 바이트코드로 변환하는 작�
 5. CloudWatch의 Log Group의 해당 로그 확인 및 Lambda 구독필터 설정 - 패턴필터링 설정( ```{ $.log = "*error*" }``` )  
 6. 1,2의 결과물 EKS Cluster에 Deploy  
 7. Slack Alert 확인
+
+
+> ### AWS CLI Lambda Deploy
+<link>https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html</link>
+
+AWS CLI 및 AWS SAM CLI가 필요합니다.
+
+```
+#AWS CLI를 통해 Lambda 코드를 배포하는 방법입니다.
+aws lambda create-function --function-name my-function \
+--zip-file fileb://function.zip --handler index.handler --runtime python3.x \
+--role arn:aws:iam::123456789012:role/lambda-ex
+```
+
+- "stage/lambda/aws sam.yaml": Runtime, Handler, Memory Size, Timeout, Role, Variable 정의가 담겨있는 파일입니다.
+- "stage/lambda/lambda deploy package.zip": Lambda Function 코드입니다.

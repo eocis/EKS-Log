@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  errortrigger:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: .  # S3 사용시 S3경로 위치로 변경 가능
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::418126497077:role/service-role/error-trigger-role-7567sosy'
+      Environment:
+        Variables:
+          hookUrl: >-
+            https://hooks.slack.com/services/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
+          slackChannel: '#alert-manager'
