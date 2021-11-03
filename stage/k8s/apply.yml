@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kube-example
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kube-example
+  name: example-app
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - image: busybox
+        imagePullPolicy: Always
+        name: logging
+        args:
+        - /bin/sh
+        - -c
+        - >
+          i=0;
+          while true;
+          do
+            echo "$i : error notification" >> /app/error.log;
+            i=$((i+1));
+            sleep 300;
+          done
+        volumeMounts:
+        - name: app
+          mountPath: /app
+      - name: example-log
+        image: busybox
+        imagePullPolicy: Always
+        args: [/bin/sh, -c, 'tail -1 -f /app/error.log']
+        volumeMounts:
+        - name: app
+          mountPath: /app
+      volumes:
+      - name: app
+        emptyDir: {}

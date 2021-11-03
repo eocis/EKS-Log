@@ -1,0 +1,8 @@
+# terraform status
+.terraform.lock.hcl
+.terraform
+kubeconfig_EKS-cluster
+terraform.tfstate*
+
+# macOS
+.DS_Store
