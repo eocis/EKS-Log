@@ -63,7 +63,7 @@ CloudWatch Event에서 보내는 data값을 바이트코드로 변환하는 작�
 
 > ### 실습 구현 단계
 
-1. AWS EKS를 Terraform으로 구축 - <link>github.com/eocis/container</link>  
+1. AWS EKS를 Terraform으로 구축 - <link>github.com/eocis/container</link>참고 및 추가  
 2. Fluentd yaml 수정(stage/k8s/fluentd.yaml) - AWS github CloudWatch Agent(fluentd) 사용  
 3. 로그 생성 Pod yaml 작성(stage/k8s/apply.yaml) - busybox image 사용  
 4. Lambda Function 작성(stage/lambda/slack.py) - Bludprint(cloudwatch-alarm-to-slack-python)기반 코드 커스텀  
