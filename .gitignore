@@ -3,6 +3,7 @@
 .terraform
 kubeconfig_EKS-cluster
 terraform.tfstate*
+.terraform*
 
 # macOS
 .DS_Store
