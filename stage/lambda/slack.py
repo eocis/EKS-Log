@@ -7,12 +7,11 @@ import os
 from base64 import b64decode
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
-
-# Lambda 환경변수
+   
 SLACK_CHANNEL = os.environ['slackChannel']
+   
 HOOK_URL = os.environ['hookUrl']
-
-# Log Setup
+   
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
    
@@ -39,28 +38,26 @@ def lambda_handler(event, context):
     container_name = message['kubernetes']['container_name']
     pod = message['kubernetes']['pod_id']
     
-    # Slack Message Form
+    # Form
     slack_body = f'''
     Pod: {pod}
     Container_name: {container_name}
     Log: {log}
     '''
     
-    # Slack Message Body
+    #Slack 메시지 커스텀
     slack_message = {
         "channel": SLACK_CHANNEL,
         "username": "EKS Alert",
         "text": slack_body
     }
 
-    # POST Request
     req = Request(HOOK_URL, json.dumps(slack_message).encode('utf-8'))
     try:
         response = urlopen(req)
-        # Send
+        #전송
         response.read()
-        logger.info(f"message posted to {os.environ[slackChannel]}")
-        
+        logger.info(f"message posted to {SLACK_CHANNEL}")
     except HTTPError as e:
         logger.error("Request failed: %d %s", e.code, e.reason)
     except URLError as e:
