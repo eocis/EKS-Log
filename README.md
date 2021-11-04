@@ -19,6 +19,8 @@
 6. 1,2의 결과물 EKS Cluster에 Deploy  
 7. Slack Alert 확인
 
+<br>
+
 > ### Cloudwatch 구독 필터 패턴 설정
 <link>https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html</link>
 
@@ -57,6 +59,8 @@
 { $.log = "491:*" } # 491: 로 시작하는 모든 로그 필터링
 ```
 
+<br>
+
 > ### Lambda Function에서 사용 값 가공
 
 로그필터로 구독시 Event에 대한 Lambda 호출시에 event값은 바로 log 값이 전달되지는 않습니다.  
@@ -70,6 +74,8 @@ CloudWatch Event에서 보내는 data값을 바이트코드로 변환하는 작�
   }
 }
 ```
+
+<br>
 
 > ### AWS CLI Lambda Deploy
 <link>https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html</link>
