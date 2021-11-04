@@ -9,6 +9,16 @@
 
 <br>
 
+> ### 실습 구현 단계
+
+1. AWS EKS를 Terraform으로 구축 - <link>github.com/eocis/container</link>참고 및 추가  
+2. Fluentd yaml 수정(stage/k8s/fluentd.yaml) - AWS github CloudWatch Agent(fluentd) 사용  
+3. 로그 생성 Pod yaml 작성(stage/k8s/apply.yaml) - busybox image 사용  
+4. Lambda Function 작성(stage/lambda/slack.py) - Bludprint(cloudwatch-alarm-to-slack-python)기반 코드 커스텀  
+5. CloudWatch의 Log Group의 해당 로그 확인 및 Lambda 구독필터 설정 - 패턴필터링 설정( ```{ $.log = "*error*" }``` )  
+6. 1,2의 결과물 EKS Cluster에 Deploy  
+7. Slack Alert 확인
+
 > ### Cloudwatch 구독 필터 패턴 설정
 <link>https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html</link>
 
@@ -60,17 +70,6 @@ CloudWatch Event에서 보내는 data값을 바이트코드로 변환하는 작�
   }
 }
 ```
-
-> ### 실습 구현 단계
-
-1. AWS EKS를 Terraform으로 구축 - <link>github.com/eocis/container</link>참고 및 추가  
-2. Fluentd yaml 수정(stage/k8s/fluentd.yaml) - AWS github CloudWatch Agent(fluentd) 사용  
-3. 로그 생성 Pod yaml 작성(stage/k8s/apply.yaml) - busybox image 사용  
-4. Lambda Function 작성(stage/lambda/slack.py) - Bludprint(cloudwatch-alarm-to-slack-python)기반 코드 커스텀  
-5. CloudWatch의 Log Group의 해당 로그 확인 및 Lambda 구독필터 설정 - 패턴필터링 설정( ```{ $.log = "*error*" }``` )  
-6. 1,2의 결과물 EKS Cluster에 Deploy  
-7. Slack Alert 확인
-
 
 > ### AWS CLI Lambda Deploy
 <link>https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html</link>
