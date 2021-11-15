@@ -1,6 +1,6 @@
 > ## Logging (Fluentd & AWS CloudWatch & AWS Lambda)
 
-### 목표
+### About.
 - Application(Container)의 로그중 특정 로그의 내용을 Slack으로 알림을 받는 모델을 구축합니다.
 ---
 
